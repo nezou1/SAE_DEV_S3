@@ -27,23 +27,23 @@ public class BarreDeVieVue {
         // Crée une nouvelle ProgressBar pour représenter la barre de vie
         ProgressBar barreDeVie = new ProgressBar();
         barreDeVie.setId(barre.getId());
-        barreDeVie.setProgress(barre.getVieTotale()); // Ajuste la valeur de progression de la barre de vie
+        barreDeVie.setProgress(barre.getVieRestante()); // Ajuste la valeur de progression de la barre de vie
         barreDeVie.setTranslateX(barre.getX());
         barreDeVie.setTranslateY(barre.getY());
         barreDeVie.setMaxHeight(10);
         barreDeVie.setMaxWidth(30);
         barreDeVie.setStyle("-fx-accent: green"); // Utilise la couleur appropriée en fonction de la vie
         this.panneauJeu.getChildren().add(barreDeVie);
-        System.out.println(barre.getVieTotale());
+        System.out.println(barre.getVieRestante());
 
         // Lie les propriétés de position et de vie de la barre de vie à celles de l'objet BarreDeVie
         barreDeVie.translateXProperty().bind(barre.xProperty());
         barreDeVie.translateYProperty().bind(barre.yProperty());
-        barreDeVie.progressProperty().bind(barre.vieTotaleProperty());
+        barreDeVie.progressProperty().bind(barre.vieRestanteProperty());
 
         // Ajoute un listener pour changer la couleur de la barre de vie en fonction du pourcentage de vie
-        barre.vieTotaleProperty().addListener(event -> {
-            double pourcentageVie = barre.getVieTotale();
+        barre.vieRestanteProperty().addListener(event -> {
+            double pourcentageVie = barre.getVieRestante();
             if (pourcentageVie <= 0.55) {
                 barreDeVie.setStyle("-fx-accent: red"); // Rouge pour moins de 55% de vie
             } else if (pourcentageVie <= 0.85) {

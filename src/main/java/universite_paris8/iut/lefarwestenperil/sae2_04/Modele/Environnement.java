@@ -120,7 +120,7 @@ public class Environnement {
             e.seDeplacer(link);
             e.getBarreDeVie().setX(e.getX());
             e.getBarreDeVie().setY(e.getY());
-            e.getBarreDeVie().setVie(e.getPointVie());
+            e.getBarreDeVie().setVieActuelle(e.getPointVie());
             e.getBarreDeVie().miseAJourVieTotale();
             if (!e.estVivant()) {
                 ennemis.remove(i);
