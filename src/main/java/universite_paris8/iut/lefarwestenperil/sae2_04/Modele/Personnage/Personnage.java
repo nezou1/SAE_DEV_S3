@@ -2,6 +2,7 @@ package universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Personnage;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Arme;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Armes.Bombe;
 import universite_paris8.iut.lefarwestenperil.sae2_04.Modele.Environnement;
@@ -27,6 +28,7 @@ public class Personnage {
     protected int direction;
     private static int compteurBrulure;
     private int pointVieMax;
+
 
 
     public Personnage(int x, int y,int pointVie, int pointAttaque, int pointDefense,Terrain terrain) {
@@ -116,7 +118,7 @@ public class Personnage {
                 Bombe bombe = (Bombe) getArme();
                 System.out.println("bombe");
                 if (bombe.estEnCours()) {
-                    System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
+                    //System.out.println("Une bombe est déjà en cours. Veuillez attendre l'explosion.");
                     return;
                 }
             }
@@ -245,4 +247,3 @@ public class Personnage {
         this.brule = true;
     }
 }
-

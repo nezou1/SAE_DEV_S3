@@ -60,6 +60,9 @@ public class Controleur implements Initializable {
 
     private Bombe bombe;
     private TerrainVue tv;
+    private GestionEnnemi gestionEnnemi;
+    private GestionProjectile gestionProjectile;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +70,9 @@ public class Controleur implements Initializable {
         link = new Link(terrain);
 
         env = new Environnement(terrain, link);
+        gestionEnnemi = new GestionEnnemi(terrain, env);
+        gestionProjectile = new GestionProjectile();
+
 
         tv = new TerrainVue(terrain, tuile);
         linkVue = new LinkVue(panneauDeJeu);
@@ -149,7 +155,7 @@ public class Controleur implements Initializable {
                 break;
             case I:
                 if(link.getArme() != null) {
-                    List<Ennemi> cibles = env.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
+                    List<Ennemi> cibles = gestionEnnemi.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
                     link.attaque(cibles);
                     if( link.getArme() instanceof Marteau){
                         tv = new TerrainVue(terrain, tuile);
@@ -168,7 +174,7 @@ public class Controleur implements Initializable {
             case L:
                 Arme armeActuelle =  link.getArme();
                 link.setArmeActuelle(bombe);
-                List<Ennemi> bombCibles = env.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
+                List<Ennemi> bombCibles = gestionEnnemi.getEnnemisDansRayon(link.getX(), link.getY(), link.getArme().getRayon());
                 link.attaque(bombCibles);
                 link.setArmeActuelle(armeActuelle);
                 break;
